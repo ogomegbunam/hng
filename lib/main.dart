@@ -35,11 +35,83 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  var _name;
+
+  var _age;
+  final _nameController = new TextEditingController();
+  final _ageController = new TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.blue,
-      child: null,
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('HNG'),
+        centerTitle: true,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Container(
+          color: Colors.blue,
+          child: Column(
+            children: [
+              SizedBox(
+                height: 20,
+              ),
+              Container(
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.all(Radius.circular(5)),
+                    border: Border.all(color: Colors.blue)),
+                height: 50,
+                child: TextField(
+                  controller: _nameController,
+                  textInputAction: TextInputAction.done,
+                  autofocus: true,
+                  cursorColor: Colors.black54,
+                  decoration: InputDecoration(
+                    hintText: 'Name',
+                    contentPadding: EdgeInsets.only(left: 8, bottom: 16),
+                    border: InputBorder.none,
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Container(
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.all(Radius.circular(5)),
+                    border: Border.all(color: Colors.blue)),
+                height: 50,
+                child: TextField(
+                  controller: _ageController,
+                  textInputAction: TextInputAction.done,
+                  autofocus: true,
+                  cursorColor: Colors.black54,
+                  decoration: InputDecoration(
+                    hintText: 'Age',
+                    contentPadding: EdgeInsets.only(left: 8, bottom: 16),
+                    border: InputBorder.none,
+                  ),
+                ),
+              ),
+              RaisedButton(
+                onPressed: () {
+                  setState(() {
+                    _name = _nameController.text;
+                    _age = _ageController.text;
+                  });
+                },
+                child: Text('Submit'),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Text('Your name is $_name, you are $_age  years old'),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
